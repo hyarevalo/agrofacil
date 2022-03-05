@@ -7,6 +7,7 @@ package GUI;
 
 
 import clases.Conexion;
+import clases.Sql;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.sql.Connection;
@@ -24,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Antonio
+ * 
  */
   public class Venta extends javax.swing.JPanel {
   private DefaultTableModel model;
@@ -179,7 +180,7 @@ import javax.swing.table.DefaultTableModel;
         ingrese_id.setForeground(new java.awt.Color(153, 153, 153));
         ingrese_id.setText("Ingrese el ID de la venta");
         ingrese_id.setBorder(null);
-        ingrese_id.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ingrese_id.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ingrese_id.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 ingrese_idMousePressed(evt);
@@ -190,7 +191,7 @@ import javax.swing.table.DefaultTableModel;
         ingrese_cedulacliente.setForeground(new java.awt.Color(153, 153, 153));
         ingrese_cedulacliente.setText("Ingrese la cedula del cliente");
         ingrese_cedulacliente.setBorder(null);
-        ingrese_cedulacliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ingrese_cedulacliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ingrese_cedulacliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 ingrese_cedulaclienteMousePressed(evt);
@@ -206,7 +207,7 @@ import javax.swing.table.DefaultTableModel;
         ingrese_cedulaempleado.setForeground(new java.awt.Color(153, 153, 153));
         ingrese_cedulaempleado.setText("Ingrese la cedula empleado");
         ingrese_cedulaempleado.setBorder(null);
-        ingrese_cedulaempleado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ingrese_cedulaempleado.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ingrese_cedulaempleado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 ingrese_cedulaempleadoMousePressed(evt);
@@ -217,7 +218,7 @@ import javax.swing.table.DefaultTableModel;
         ingrese_valorventa.setForeground(new java.awt.Color(153, 153, 153));
         ingrese_valorventa.setText("Ingrese el valor total de la venta");
         ingrese_valorventa.setBorder(null);
-        ingrese_valorventa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ingrese_valorventa.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ingrese_valorventa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 ingrese_valorventaMousePressed(evt);
@@ -243,7 +244,7 @@ import javax.swing.table.DefaultTableModel;
                 "ID de venta", "Cedula cliente", "Cedula empleado ", "Valor de venta", "ID de producto", "Cantidad", "Fecha de venta"
             }
         ));
-        tabla_venta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tabla_venta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ventas_tabla.setViewportView(tabla_venta);
 
         add(ventas_tabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 700, 110));
@@ -256,16 +257,14 @@ import javax.swing.table.DefaultTableModel;
 
         total.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         total.setForeground(new java.awt.Color(255, 255, 255));
+        total.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         total.setText("0.0");
 
         javax.swing.GroupLayout valor_totalLayout = new javax.swing.GroupLayout(valor_total);
         valor_total.setLayout(valor_totalLayout);
         valor_totalLayout.setHorizontalGroup(
             valor_totalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, valor_totalLayout.createSequentialGroup()
-                .addContainerGap(38, Short.MAX_VALUE)
-                .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
+            .addComponent(total, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
         );
         valor_totalLayout.setVerticalGroup(
             valor_totalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -417,7 +416,7 @@ import javax.swing.table.DefaultTableModel;
         ingrese_idproducto.setForeground(new java.awt.Color(153, 153, 153));
         ingrese_idproducto.setText("Ingrese ID producto");
         ingrese_idproducto.setBorder(null);
-        ingrese_idproducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ingrese_idproducto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ingrese_idproducto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 ingrese_idproductoMousePressed(evt);
@@ -428,7 +427,7 @@ import javax.swing.table.DefaultTableModel;
         ingrese_cantidad.setForeground(new java.awt.Color(153, 153, 153));
         ingrese_cantidad.setText("Ingrese la cantidad");
         ingrese_cantidad.setBorder(null);
-        ingrese_cantidad.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ingrese_cantidad.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ingrese_cantidad.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 ingrese_cantidadMousePressed(evt);
@@ -605,7 +604,22 @@ import javax.swing.table.DefaultTableModel;
     }//GEN-LAST:event_panel_eliminarMouseExited
 
     private void panel_agregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_agregarMouseClicked
-   
+        
+        if(ingrese_idproducto.getText().equals("Ingrese ID producto") || ingrese_idproducto.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Ingrese el ID del producto");
+        }
+        else{
+            if(ingrese_cantidad.getText().equals("Ingrese la cantidad") || ingrese_cantidad.getText().equals("")){
+                JOptionPane.showMessageDialog(this, "Ingrese la cantidad del producto");
+            }
+            else{
+                int con1 = 0;
+                Conexion con = new Conexion();
+                con.ConexionPostgres();
+                
+                String query = "SELECT * FROM producto WHERE "
+            }
+        }
     }//GEN-LAST:event_panel_agregarMouseClicked
 
     private void panel_ventaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_ventaMouseClicked
@@ -618,12 +632,12 @@ import javax.swing.table.DefaultTableModel;
       ingrese_cedulaempleado.setText("Ingrese la cedula del empleado");
       ingrese_idproducto.setText("Ingrese ID producto");
       ingrese_cantidad.setText("Ingrese la cantidad");
-      
+      total.setText("0.0");
       
       Sql s = new Sql();
       int id = s.id_incrementable();
       String idv = String.valueOf(id);
-      id_venta.setText(idv);
+      ingrese_id.setText(idv);
     }//GEN-LAST:event_panel_ventaMouseClicked
 
     private void panel_eliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_eliminarMouseClicked

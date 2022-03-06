@@ -21,7 +21,7 @@ public class Conexion{
 	public Conexion(){
 		
 	this.usuario = "postgres";
-	this.password = "1705";
+	this.password = "170514";
 	this.iP = "localhost";
 	this.puerto = "5432";
 	this.nombreBD = "agrofacil";
@@ -43,7 +43,7 @@ public class Conexion{
 
 		Class.forName(driver).newInstance();
 		if (sw)
- 			conexion = DriverManager.getConnection ("jdbc:"+puente+
+     			conexion = DriverManager.getConnection ("jdbc:"+puente+
 								"://"+iP+
 								":"+puerto+
 								"/"+nombreBD,usuario,password);        

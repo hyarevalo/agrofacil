@@ -53,10 +53,10 @@ import javax.swing.ImageIcon;
         //CAMPOS NO EDITABLES
         
         fecha_ventas.setDate(hoy);
-        ingrese_id.setEnabled(false);
-        ingrese_cedulacliente.setEnabled(false);
-        ingrese_cedulaempleado.setEnabled(false);
-        ingrese_valorventa.setEnabled(false);
+        ingrese_id.setEnabled(true);
+        ingrese_cedulacliente.setEnabled(true);
+        ingrese_cedulaempleado.setEnabled(true);
+        ingrese_valorventa.setEnabled(true);
         
 
         //--------------------------------------------------
@@ -577,7 +577,84 @@ import javax.swing.ImageIcon;
     }//GEN-LAST:event_panel_agregarMouseExited
 
     private void panel_facturarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_facturarMouseClicked
-       
+      
+        // INSERSION DE DATOS PARA REGISTARA LA VENTA EN LA TABLA
+        
+        try {
+          Conexion con1 = new Conexion();
+          con1.ConexionPostgres();
+          
+          formato1 = DateFormat.getDateInstance();
+          sfecha = formato1.format(fecha_ventas.getDate());
+          
+          String query1 = "INSERT INTO venta VALUES ("+Integer.parseInt(ingrese_id.getText()) + ", '"+ sfecha + "', "+ Double.parseDouble(total.getText()) +", "+ Long.parseLong(ingrese_cedulacliente.getText().trim()) +", "+ Long.parseLong(ingrese_cedulaempleado.getText().trim())+")";
+          con1.actualizar(query1);
+          con1.cerrar();
+          
+          
+      } catch (ClassNotFoundException ex) {
+          Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+      } catch (SQLException ex) {
+          Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+      } catch (InstantiationException ex) {
+          Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+      } catch (IllegalAccessException ex) {
+          Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+      }
+        
+        // INSERSION DE DATOS EN EL MODULO DETALLE VENTA
+        
+        
+      try {
+          Conexion con = new Conexion();
+          con.ConexionPostgres();
+          for(int i = 0; i<tabla_venta.getRowCount(); i++){
+              
+              int id_p = Integer.parseInt(tabla_venta.getValueAt(i, 0).toString());
+              int cant_d_v = Integer.parseInt(tabla_venta.getValueAt(i, 1).toString());
+              double val_d_v = Double.parseDouble(tabla_venta.getValueAt(i, 2).toString());
+              
+              String query = "INSERT INTO detalle_venta VALUES (" +Integer.parseInt(ingrese_id.getText()) +", "+ id_p +", "+ cant_d_v +", "+ val_d_v +")";
+              con.actualizar(query);
+          }
+          
+          con.cerrar();
+      } catch (ClassNotFoundException ex) {
+          Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+      } catch (SQLException ex) {
+          Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+      } catch (InstantiationException ex) {
+          Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+      } catch (IllegalAccessException ex) {
+          Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+      }
+      
+      // MODIFICACION DE LA EXISTENCIA DEL PRODUCTO VENDIDO EN LA TABLA PRODUCTO
+      
+      
+      try {
+          Conexion con = new Conexion();
+          con.ConexionPostgres();
+          for(int i = 0; i<tabla_venta.getRowCount(); i++){
+              
+              int id_p = Integer.parseInt(tabla_venta.getValueAt(i, 0).toString());
+              int can_d_v = Integer.parseInt(tabla_venta.getValueAt(i, 1).toString());
+              
+              String query = "UPDATE producto SET exitencia_producto = existencia_producto -"+can_d_v+" WHERE id_producto = "+ id_p;
+              con.actualizar(query);
+          }
+          
+          con.cerrar();
+      } catch (ClassNotFoundException ex) {
+          Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+      } catch (SQLException ex) {
+          Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+      } catch (InstantiationException ex) {
+          Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+      } catch (IllegalAccessException ex) {
+          Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+      }
+      
     }//GEN-LAST:event_panel_facturarMouseClicked
 
     private void panel_facturarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_facturarMouseEntered
@@ -625,7 +702,7 @@ import javax.swing.ImageIcon;
                       double sub = val * cant;
                       model.insertRow(con1, new Object[]{});
                       model.setValueAt((ingrese_idproducto.getText().trim()), con1, 0);
-                      model.setValueAt(ingrese_cantidad, con1, 1);
+                      model.setValueAt(ingrese_cantidad.getText().trim(), con1, 1);
                       model.setValueAt((sub), con1, 2);
 
                       con1++;
@@ -675,7 +752,26 @@ import javax.swing.ImageIcon;
     }//GEN-LAST:event_panel_ventaMouseClicked
 
     private void panel_eliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_eliminarMouseClicked
-   
+        if (tabla_venta.getSelectedRow() >= 0) {
+            DefaultTableModel model = (DefaultTableModel) tabla_venta.getModel();
+            int rpta = JOptionPane.showConfirmDialog(this, "Desea eliminar el producto?", "SISTEMA", JOptionPane.INFORMATION_MESSAGE);
+            if (rpta == JOptionPane.YES_OPTION) {
+                model.removeRow(tabla_venta.getSelectedRow());
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "¡No ha selecciona ningún producto!", "SISTEMA", JOptionPane.WARNING_MESSAGE);
+        }
+        
+        int contar = tabla_venta.getRowCount();
+        double suma = 0;
+        for (int i = 0; i < contar; i++) {
+            suma = suma + Double.parseDouble(tabla_venta.getValueAt(i, 2).toString());
+            String sum = Double.toString(suma);
+            total.setText(sum);
+        }
+        if (contar == 0) {
+            total.setText("0.0");
+        }        
     }//GEN-LAST:event_panel_eliminarMouseClicked
 
     private void ingrese_cedulaclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingrese_cedulaclienteActionPerformed

@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.text.DateFormat;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.ImageIcon;
 
 
 
@@ -234,14 +235,14 @@ import javax.swing.table.DefaultTableModel;
         tabla_venta.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         tabla_venta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "ID de venta", "Cedula cliente", "Cedula empleado ", "Valor de venta", "ID de producto", "Cantidad", "Fecha de venta"
+                "ID de producto", "Cantidad", "Valor"
             }
         ));
         tabla_venta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -604,22 +605,55 @@ import javax.swing.table.DefaultTableModel;
     }//GEN-LAST:event_panel_eliminarMouseExited
 
     private void panel_agregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_agregarMouseClicked
-        
-        if(ingrese_idproducto.getText().equals("Ingrese ID producto") || ingrese_idproducto.getText().equals("")){
-            JOptionPane.showMessageDialog(this, "Ingrese el ID del producto");
-        }
-        else{
-            if(ingrese_cantidad.getText().equals("Ingrese la cantidad") || ingrese_cantidad.getText().equals("")){
-                JOptionPane.showMessageDialog(this, "Ingrese la cantidad del producto");
-            }
-            else{
-                int con1 = 0;
-                Conexion con = new Conexion();
-                con.ConexionPostgres();
-                
-                String query = "SELECT * FROM producto WHERE "
-            }
-        }
+          try {
+              if (ingrese_idproducto.getText().equals("Ingrese ID producto") || ingrese_idproducto.getText().equals("")) {
+                  JOptionPane.showMessageDialog(this, "Ingrese el ID del producto");
+              } else if (ingrese_cantidad.getText().equals("Ingrese la cantidad") || ingrese_cantidad.getText().equals("")) {
+                  JOptionPane.showMessageDialog(this, "Ingrese la cantidad del producto");
+              } else {
+                  int con1 = 0;
+                  Conexion con = new Conexion();
+                  con.ConexionPostgres();
+
+                  String query = "SELECT * FROM producto WHERE id_producto = " + Long.parseLong((ingrese_idproducto.getText().trim()));
+
+                  ResultSet rs = con.consultar(query);
+
+                  if (rs.next()) {
+                      int cant = Integer.parseInt(ingrese_cantidad.getText().trim());
+                      double val = rs.getDouble("valor_producto");
+                      double sub = val * cant;
+                      model.insertRow(con1, new Object[]{});
+                      model.setValueAt((ingrese_idproducto.getText().trim()), con1, 0);
+                      model.setValueAt(ingrese_cantidad, con1, 1);
+                      model.setValueAt((sub), con1, 2);
+
+                      con1++;
+
+                  } else {
+                      JOptionPane.showMessageDialog(this, "No existe el producto");
+                  }
+
+                  int contar = tabla_venta.getRowCount();
+                  double suma = 0;
+                  for (int i = 0; i < contar; i++) {
+                      suma = suma + Double.parseDouble(tabla_venta.getValueAt(i, 2).toString());
+                      String sum = Double.toString(suma);
+                      total.setText(sum);
+                  }                                    
+                  ingrese_cantidad.setText(null);
+                  ingrese_idproducto.setText(null);                  
+              }
+
+          } catch (ClassNotFoundException ex) {
+              Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+          } catch (SQLException ex) {
+              Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+          } catch (InstantiationException ex) {
+              Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+          } catch (IllegalAccessException ex) {
+              Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+          }      
     }//GEN-LAST:event_panel_agregarMouseClicked
 
     private void panel_ventaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_ventaMouseClicked

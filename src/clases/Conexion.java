@@ -21,7 +21,7 @@ public class Conexion{
 	public Conexion(){
 		
 	this.usuario = "postgres";
-	this.password = "1004967353";
+	this.password = "1705";
 	this.iP = "localhost";
 	this.puerto = "5432";
 	this.nombreBD = "agrofacil";
@@ -46,7 +46,7 @@ public class Conexion{
  			conexion = DriverManager.getConnection ("jdbc:"+puente+
 								"://"+iP+
 								":"+puerto+
-								"/"+nombreBD,usuario,password);
+								"/"+nombreBD,usuario,password);        
 		else
 			conexion = DriverManager.getConnection ("jdbc:"+puente+
 								":"+nombreBD,usuario,password);
@@ -75,7 +75,7 @@ public class Conexion{
 							SQLException,
 							InstantiationException,
 							IllegalAccessException{
-		conectar("org.postgresql.Driver","postgresql",true);
+		conectar("org.postgresql.Driver","postgresql",true);               
 	}
 
 	public void actualizar(String actualiza) throws SQLException{

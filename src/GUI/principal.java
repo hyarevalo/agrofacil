@@ -113,7 +113,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
         fondo_menu.setLayout(null);
 
         panel_inicio.setBackground(new java.awt.Color(153, 255, 51));
-        panel_inicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panel_inicio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         panel_inicio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 panel_inicioMouseClicked(evt);
@@ -141,7 +141,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
         panel_inicio.setBounds(0, 160, 170, 50);
 
         panel_venta.setBackground(new java.awt.Color(153, 255, 51));
-        panel_venta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panel_venta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         panel_venta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 panel_ventaMouseClicked(evt);
@@ -168,7 +168,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
         panel_venta.setBounds(0, 580, 170, 50);
 
         panel_detalleventa.setBackground(new java.awt.Color(153, 255, 51));
-        panel_detalleventa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panel_detalleventa.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         panel_detalleventa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 panel_detalleventaMouseClicked(evt);
@@ -196,7 +196,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
         panel_detalleventa.setBounds(0, 220, 170, 50);
 
         panel_producto.setBackground(new java.awt.Color(153, 255, 51));
-        panel_producto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panel_producto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         panel_producto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 panel_productoMouseClicked(evt);
@@ -239,7 +239,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
         panel_producto.setBounds(0, 280, 170, 50);
 
         panel_cliente.setBackground(new java.awt.Color(153, 255, 51));
-        panel_cliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panel_cliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         panel_cliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 panel_clienteMouseClicked(evt);
@@ -267,7 +267,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
         panel_cliente.setBounds(0, 340, 170, 50);
 
         panel_proveedor.setBackground(new java.awt.Color(153, 255, 51));
-        panel_proveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panel_proveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         panel_proveedor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 panel_proveedorMouseClicked(evt);
@@ -310,7 +310,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
         panel_proveedor.setBounds(0, 400, 170, 50);
 
         panel_familia.setBackground(new java.awt.Color(153, 255, 51));
-        panel_familia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panel_familia.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         panel_familia.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 panel_familiaMouseClicked(evt);
@@ -336,7 +336,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
         panel_familia.setBounds(0, 460, 170, 50);
 
         panel_empleado.setBackground(new java.awt.Color(153, 255, 51));
-        panel_empleado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panel_empleado.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         panel_empleado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 panel_empleadoMouseClicked(evt);
@@ -384,7 +384,7 @@ public class principal extends javax.swing.JFrame implements Runnable {
         icono.setBounds(30, 0, 104, 95);
 
         panel_usuario.setBackground(new java.awt.Color(153, 255, 51));
-        panel_usuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panel_usuario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         panel_usuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 panel_usuarioMouseClicked(evt);

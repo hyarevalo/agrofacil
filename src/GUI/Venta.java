@@ -5,7 +5,6 @@
  */
 package GUI;
 
-
 import clases.Conexion;
 import clases.Sql;
 import java.awt.BorderLayout;
@@ -22,46 +21,41 @@ import java.text.DateFormat;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ImageIcon;
 
-
-
 /**
  *
- * 
+ *
  */
-  public class Venta extends javax.swing.JPanel {
-  private DefaultTableModel model;
-  public static java.util.Date hoy = new java.util.Date();
-  public static String patron = "dd/MMM/yyyy";
+public class Venta extends javax.swing.JPanel {
+
+    private DefaultTableModel model;
+    public static java.util.Date hoy = new java.util.Date();
+    public static String patron = "dd/MMM/yyyy";
 
     public static String sfecha;
     public static DateFormat formato1;
-    
+
     /**
      * Creates new form Principal
      */
     public Venta() {
         initComponents();
-        
-      //TABLA
-        
-        String data3[][]={};
-        String col[]= {"Id" , "Cantidad" , "Total"};
-        model = new DefaultTableModel(data3,col);
+
+        //TABLA
+        String data3[][] = {};
+        String col[] = {"Id", "Cantidad", "Total"};
+        model = new DefaultTableModel(data3, col);
         tabla_venta.setModel(model);
-        
+
         //--------------------------------------------------
         //CAMPOS NO EDITABLES
-        
         fecha_ventas.setDate(hoy);
         ingrese_id.setEnabled(true);
         ingrese_cedulacliente.setEnabled(true);
         ingrese_cedulaempleado.setEnabled(true);
         ingrese_valorventa.setEnabled(true);
-        
 
         //--------------------------------------------------
         //CARGAR EMPLEADOS
-        
         try {
             Conexion con = new Conexion();
             con.ConexionPostgres();
@@ -70,7 +64,7 @@ import javax.swing.ImageIcon;
             ResultSet rs = con.consultar(query);
 
             while (rs.next()) {
-           ingrese_cedulaempleado.getText().trim();
+                ingrese_cedulaempleado.getText().trim();
 
             }
 
@@ -84,12 +78,9 @@ import javax.swing.ImageIcon;
             Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
             Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
-        }  
-        
-    }
-    
+        }
 
-    
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -187,6 +178,11 @@ import javax.swing.ImageIcon;
                 ingrese_idMousePressed(evt);
             }
         });
+        ingrese_id.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ingrese_idActionPerformed(evt);
+            }
+        });
         add(ingrese_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 170, 30));
 
         ingrese_cedulacliente.setForeground(new java.awt.Color(153, 153, 153));
@@ -212,6 +208,11 @@ import javax.swing.ImageIcon;
         ingrese_cedulaempleado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 ingrese_cedulaempleadoMousePressed(evt);
+            }
+        });
+        ingrese_cedulaempleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ingrese_cedulaempleadoActionPerformed(evt);
             }
         });
         add(ingrese_cedulaempleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 130, 160, 30));
@@ -440,32 +441,32 @@ import javax.swing.ImageIcon;
     }// </editor-fold>//GEN-END:initComponents
 
     private void ingrese_idMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ingrese_idMousePressed
-        if(ingrese_id.getText().equals("Ingrese el ID de la venta")){
+        if (ingrese_id.getText().equals("Ingrese el ID de la venta")) {
             ingrese_id.setText("");
             ingrese_id.setForeground(Color.black);
         }
 
-        if(ingrese_cedulacliente. getText().isEmpty()){
+        if (ingrese_cedulacliente.getText().isEmpty()) {
             ingrese_cedulacliente.setText("Ingrese la cedula del cliente");
             ingrese_cedulacliente.setForeground(Color.gray);
         }
 
-        if(ingrese_cedulaempleado. getText().isEmpty()){
+        if (ingrese_cedulaempleado.getText().isEmpty()) {
             ingrese_cedulaempleado.setText("Ingrese la cedula empleado");
             ingrese_cedulaempleado.setForeground(Color.gray);
         }
 
-        if(ingrese_valorventa. getText().isEmpty()){
+        if (ingrese_valorventa.getText().isEmpty()) {
             ingrese_valorventa.setText("Ingrese el valor total de la venta");
             ingrese_valorventa.setForeground(Color.gray);
         }
-        
-        if(ingrese_idproducto. getText().isEmpty()){
+
+        if (ingrese_idproducto.getText().isEmpty()) {
             ingrese_idproducto.setText("Ingrese ID producto");
             ingrese_idproducto.setForeground(Color.gray);
         }
-        
-        if(ingrese_cantidad.getText().isEmpty()){
+
+        if (ingrese_cantidad.getText().isEmpty()) {
             ingrese_cantidad.setText("Ingrese la cantidad");
             ingrese_cantidad.setForeground(Color.gray);
         }
@@ -473,96 +474,96 @@ import javax.swing.ImageIcon;
 
     private void ingrese_cedulaclienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ingrese_cedulaclienteMousePressed
 
-        if(ingrese_id. getText().isEmpty()){
+        if (ingrese_id.getText().isEmpty()) {
             ingrese_id.setText("Ingrese el ID de la venta");
             ingrese_id.setForeground(Color.gray);
         }
 
-        if(ingrese_cedulacliente.getText().equals("Ingrese la cedula del cliente")){
+        if (ingrese_cedulacliente.getText().equals("Ingrese la cedula del cliente")) {
             ingrese_cedulacliente.setText("");
             ingrese_cedulacliente.setForeground(Color.black);
         }
 
-        if(ingrese_cedulaempleado. getText().isEmpty()){
+        if (ingrese_cedulaempleado.getText().isEmpty()) {
             ingrese_cedulaempleado.setText("Ingrese la cedula empleado");
             ingrese_cedulaempleado.setForeground(Color.gray);
         }
 
-        if(ingrese_valorventa. getText().isEmpty()){
+        if (ingrese_valorventa.getText().isEmpty()) {
             ingrese_valorventa.setText("Ingrese el valor total de la venta");
             ingrese_valorventa.setForeground(Color.gray);
         }
-        
-        if(ingrese_idproducto. getText().isEmpty()){
+
+        if (ingrese_idproducto.getText().isEmpty()) {
             ingrese_idproducto.setText("Ingrese ID producto");
             ingrese_idproducto.setForeground(Color.gray);
         }
-        
-        if(ingrese_cantidad.getText().isEmpty()){
+
+        if (ingrese_cantidad.getText().isEmpty()) {
             ingrese_cantidad.setText("Ingrese la cantidad");
             ingrese_cantidad.setForeground(Color.gray);
         }
     }//GEN-LAST:event_ingrese_cedulaclienteMousePressed
 
     private void ingrese_cedulaempleadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ingrese_cedulaempleadoMousePressed
-        if(ingrese_id. getText().isEmpty()){
+        if (ingrese_id.getText().isEmpty()) {
             ingrese_id.setText("Ingrese el ID de la venta");
             ingrese_id.setForeground(Color.gray);
         }
 
-        if(ingrese_cedulacliente. getText().isEmpty()){
+        if (ingrese_cedulacliente.getText().isEmpty()) {
             ingrese_cedulacliente.setText("Ingrese la cedula del cliente");
             ingrese_cedulacliente.setForeground(Color.gray);
         }
 
-        if(ingrese_cedulaempleado.getText().equals("Ingrese la cedula empleado")){
+        if (ingrese_cedulaempleado.getText().equals("Ingrese la cedula empleado")) {
             ingrese_cedulaempleado.setText("");
             ingrese_cedulaempleado.setForeground(Color.black);
         }
 
-        if(ingrese_valorventa. getText().isEmpty()){
+        if (ingrese_valorventa.getText().isEmpty()) {
             ingrese_valorventa.setText("Ingrese el valor total de la venta");
             ingrese_valorventa.setForeground(Color.gray);
         }
-        
-        if(ingrese_idproducto. getText().isEmpty()){
+
+        if (ingrese_idproducto.getText().isEmpty()) {
             ingrese_idproducto.setText("Ingrese ID producto");
             ingrese_idproducto.setForeground(Color.gray);
         }
-        
-        if(ingrese_cantidad.getText().isEmpty()){
+
+        if (ingrese_cantidad.getText().isEmpty()) {
             ingrese_cantidad.setText("Ingrese la cantidad");
             ingrese_cantidad.setForeground(Color.gray);
         }
     }//GEN-LAST:event_ingrese_cedulaempleadoMousePressed
 
     private void ingrese_valorventaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ingrese_valorventaMousePressed
-        if(ingrese_id. getText().isEmpty()){
+        if (ingrese_id.getText().isEmpty()) {
             ingrese_id.setText("Ingrese el ID de la venta");
             ingrese_id.setForeground(Color.gray);
         }
 
-        if(ingrese_cedulacliente. getText().isEmpty()){
+        if (ingrese_cedulacliente.getText().isEmpty()) {
             ingrese_cedulacliente.setText("Ingrese la cedula del cliente");
             ingrese_cedulacliente.setForeground(Color.gray);
         }
 
-        if(ingrese_cedulaempleado. getText().isEmpty()){
+        if (ingrese_cedulaempleado.getText().isEmpty()) {
             ingrese_cedulaempleado.setText("Ingrese cedula empleado");
             ingrese_cedulaempleado.setForeground(Color.gray);
         }
 
-        if(ingrese_valorventa.getText().equals("Ingrese el valor total de la venta")){
+        if (ingrese_valorventa.getText().equals("Ingrese el valor total de la venta")) {
             ingrese_valorventa.setText("");
             ingrese_valorventa.setForeground(Color.black);
         }
-        
-        if(ingrese_idproducto. getText().isEmpty()){
+
+        if (ingrese_idproducto.getText().isEmpty()) {
             ingrese_idproducto.setText("Ingrese ID producto");
             ingrese_idproducto.setForeground(Color.gray);
         }
-        
-        if(ingrese_cantidad.getText().isEmpty()){
+
+        if (ingrese_cantidad.getText().isEmpty()) {
             ingrese_cantidad.setText("Ingrese la cantidad");
             ingrese_cantidad.setForeground(Color.gray);
         }
@@ -573,96 +574,104 @@ import javax.swing.ImageIcon;
     }//GEN-LAST:event_panel_agregarMouseEntered
 
     private void panel_agregarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_agregarMouseExited
-        panel_agregar.setBackground(new Color(51,204,0));
+        panel_agregar.setBackground(new Color(51, 204, 0));
     }//GEN-LAST:event_panel_agregarMouseExited
 
     private void panel_facturarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_facturarMouseClicked
-      
-        // INSERSION DE DATOS PARA REGISTARA LA VENTA EN LA TABLA
-        
-        try {
-          Conexion con1 = new Conexion();
-          con1.ConexionPostgres();
-          
-          formato1 = DateFormat.getDateInstance();
-          sfecha = formato1.format(fecha_ventas.getDate());
-          
-          String query1 = "INSERT INTO venta VALUES ("+Integer.parseInt(ingrese_id.getText()) + ", '"+ sfecha + "', "+ Double.parseDouble(total.getText()) +", "+ Long.parseLong(ingrese_cedulacliente.getText().trim()) +", "+ Long.parseLong(ingrese_cedulaempleado.getText().trim())+")";
-          con1.actualizar(query1);
-          con1.cerrar();
-          
-          
-      } catch (ClassNotFoundException ex) {
-          Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
-      } catch (SQLException ex) {
-          Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
-      } catch (InstantiationException ex) {
-          Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
-      } catch (IllegalAccessException ex) {
-          Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
-      }
-        
-        // INSERSION DE DATOS EN EL MODULO DETALLE VENTA
-        
-        
-      try {
-          Conexion con = new Conexion();
-          con.ConexionPostgres();
-          for(int i = 0; i<tabla_venta.getRowCount(); i++){
-              
-              int id_p = Integer.parseInt(tabla_venta.getValueAt(i, 0).toString());
-              int cant_d_v = Integer.parseInt(tabla_venta.getValueAt(i, 1).toString());
-              double val_d_v = Double.parseDouble(tabla_venta.getValueAt(i, 2).toString());
-              
-              String query = "INSERT INTO detalle_venta VALUES (" +Integer.parseInt(ingrese_id.getText()) +", "+ id_p +", "+ cant_d_v +", "+ val_d_v +")";
-              con.actualizar(query);
-          }
-          
-          con.cerrar();
-      } catch (ClassNotFoundException ex) {
-          Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
-      } catch (SQLException ex) {
-          Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
-      } catch (InstantiationException ex) {
-          Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
-      } catch (IllegalAccessException ex) {
-          Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
-      }
-      
-      // MODIFICACION DE LA EXISTENCIA DEL PRODUCTO VENDIDO EN LA TABLA PRODUCTO
-      
-      
-      try {
-          Conexion con = new Conexion();
-          con.ConexionPostgres();
-          for(int i = 0; i<tabla_venta.getRowCount(); i++){
-              
-              int id_p = Integer.parseInt(tabla_venta.getValueAt(i, 0).toString());
-              int can_d_v = Integer.parseInt(tabla_venta.getValueAt(i, 1).toString());
-              
-              String query = "UPDATE producto SET exitencia_producto = existencia_producto -"+can_d_v+" WHERE id_producto = "+ id_p;
-              con.actualizar(query);
-          }
-          
-          con.cerrar();
-      } catch (ClassNotFoundException ex) {
-          Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
-      } catch (SQLException ex) {
-          Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
-      } catch (InstantiationException ex) {
-          Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
-      } catch (IllegalAccessException ex) {
-          Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
-      }
-      
-    }//GEN-LAST:event_panel_facturarMouseClicked
 
+        
+
+            // INSERSION DE DATOS PARA REGISTARA LA VENTA EN LA TABLA
+            try {
+                Conexion con1 = new Conexion();
+                con1.ConexionPostgres();
+
+                formato1 = DateFormat.getDateInstance();
+                sfecha = formato1.format(fecha_ventas.getDate());
+
+                String query1 = "INSERT INTO venta VALUES (" + Integer.parseInt(ingrese_id.getText()) + ", '" + sfecha + "', " + Double.parseDouble(total.getText()) + ", " + Long.parseLong(ingrese_cedulacliente.getText().trim()) + ", " + Long.parseLong(ingrese_cedulaempleado.getText().trim()) + ")";
+                con1.actualizar(query1);
+                con1.cerrar();
+
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InstantiationException ex) {
+                Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IllegalAccessException ex) {
+                Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            // INSERSION DE DATOS EN EL MODULO DETALLE VENTA
+            try {
+                Conexion con = new Conexion();
+                con.ConexionPostgres();
+                for (int i = 0; i < tabla_venta.getRowCount(); i++) {
+
+                    int id_p = Integer.parseInt(tabla_venta.getValueAt(i, 0).toString());
+                    int cant_d_v = Integer.parseInt(tabla_venta.getValueAt(i, 1).toString());
+                    double val_d_v = Double.parseDouble(tabla_venta.getValueAt(i, 2).toString());
+
+                    String query = "INSERT INTO detalle_venta VALUES (" + Integer.parseInt(ingrese_id.getText()) + ", " + id_p + ", " + cant_d_v + ", " + val_d_v + ")";
+                    con.actualizar(query);
+                }
+
+                con.cerrar();
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InstantiationException ex) {
+                Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IllegalAccessException ex) {
+                Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            // MODIFICACION DE LA EXISTENCIA DEL PRODUCTO VENDIDO EN LA TABLA PRODUCTO
+            try {
+                Conexion con = new Conexion();
+                con.ConexionPostgres();
+                for (int i = 0; i < tabla_venta.getRowCount(); i++) {
+
+                    int id_p = Integer.parseInt(tabla_venta.getValueAt(i, 0).toString());
+                    int can_d_v = Integer.parseInt(tabla_venta.getValueAt(i, 1).toString());
+
+                    String query = "UPDATE producto SET exitencia_producto = existencia_producto -" + can_d_v + " WHERE id_producto = " + id_p;
+                    con.actualizar(query);
+                }
+
+                con.cerrar();
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InstantiationException ex) {
+                Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IllegalAccessException ex) {
+                Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            //DESHABILITAR LOS CAMPOS UNA VEZ REALIZADA LA VENTA
+        
+        ingrese_cedulaempleado.setEnabled(false);
+        ingrese_cedulacliente.setEnabled(false);
+        ingrese_idproducto.setEnabled(false);
+        ingrese_cantidad.setEnabled(false);
+        
+        
+        // VENTA CONFIRMADA
+        
+        JOptionPane.showMessageDialog(this, "Venta Registrada!");
+            
+    }//GEN-LAST:event_panel_facturarMouseClicked
+    
     private void panel_facturarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_facturarMouseEntered
-         panel_facturar.setBackground(Color.orange);
+        panel_facturar.setBackground(Color.orange);
     }//GEN-LAST:event_panel_facturarMouseEntered
 
     private void panel_facturarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_facturarMouseExited
-        panel_facturar.setBackground(new Color(51,204,0));
+        panel_facturar.setBackground(new Color(51, 204, 0));
     }//GEN-LAST:event_panel_facturarMouseExited
 
     private void panel_ventaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_ventaMouseEntered
@@ -670,7 +679,7 @@ import javax.swing.ImageIcon;
     }//GEN-LAST:event_panel_ventaMouseEntered
 
     private void panel_ventaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_ventaMouseExited
-        panel_venta.setBackground(new Color(51,204,0));
+        panel_venta.setBackground(new Color(51, 204, 0));
     }//GEN-LAST:event_panel_ventaMouseExited
 
     private void panel_eliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_eliminarMouseEntered
@@ -678,77 +687,77 @@ import javax.swing.ImageIcon;
     }//GEN-LAST:event_panel_eliminarMouseEntered
 
     private void panel_eliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_eliminarMouseExited
-        panel_eliminar.setBackground(new Color(51,204,0));
+        panel_eliminar.setBackground(new Color(51, 204, 0));
     }//GEN-LAST:event_panel_eliminarMouseExited
 
     private void panel_agregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_agregarMouseClicked
-          try {
-              if (ingrese_idproducto.getText().equals("Ingrese ID producto") || ingrese_idproducto.getText().equals("")) {
-                  JOptionPane.showMessageDialog(this, "Ingrese el ID del producto");
-              } else if (ingrese_cantidad.getText().equals("Ingrese la cantidad") || ingrese_cantidad.getText().equals("")) {
-                  JOptionPane.showMessageDialog(this, "Ingrese la cantidad del producto");
-              } else {
-                  int con1 = 0;
-                  Conexion con = new Conexion();
-                  con.ConexionPostgres();
+        try {
+            if (ingrese_idproducto.getText().equals("Ingrese ID producto") || ingrese_idproducto.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Ingrese el ID del producto");
+            } else if (ingrese_cantidad.getText().equals("Ingrese la cantidad") || ingrese_cantidad.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Ingrese la cantidad del producto");
+            } else {
+                int con1 = 0;
+                Conexion con = new Conexion();
+                con.ConexionPostgres();
 
-                  String query = "SELECT * FROM producto WHERE id_producto = " + Long.parseLong((ingrese_idproducto.getText().trim()));
+                String query = "SELECT * FROM producto WHERE id_producto = " + Long.parseLong((ingrese_idproducto.getText().trim()));
 
-                  ResultSet rs = con.consultar(query);
+                ResultSet rs = con.consultar(query);
 
-                  if (rs.next()) {
-                      int cant = Integer.parseInt(ingrese_cantidad.getText().trim());
-                      double val = rs.getDouble("valor_producto");
-                      double sub = val * cant;
-                      model.insertRow(con1, new Object[]{});
-                      model.setValueAt((ingrese_idproducto.getText().trim()), con1, 0);
-                      model.setValueAt(ingrese_cantidad.getText().trim(), con1, 1);
-                      model.setValueAt((sub), con1, 2);
+                if (rs.next()) {
+                    int cant = Integer.parseInt(ingrese_cantidad.getText().trim());
+                    double val = rs.getDouble("valor_producto");
+                    double sub = val * cant;
+                    model.insertRow(con1, new Object[]{});
+                    model.setValueAt((ingrese_idproducto.getText().trim()), con1, 0);
+                    model.setValueAt(ingrese_cantidad.getText().trim(), con1, 1);
+                    model.setValueAt((sub), con1, 2);
 
-                      con1++;
+                    con1++;
 
-                  } else {
-                      JOptionPane.showMessageDialog(this, "No existe el producto");
-                  }
+                } else {
+                    JOptionPane.showMessageDialog(this, "No existe el producto");
+                }
 
-                  int contar = tabla_venta.getRowCount();
-                  double suma = 0;
-                  for (int i = 0; i < contar; i++) {
-                      suma = suma + Double.parseDouble(tabla_venta.getValueAt(i, 2).toString());
-                      String sum = Double.toString(suma);
-                      total.setText(sum);
-                  }                                    
-                  ingrese_cantidad.setText(null);
-                  ingrese_idproducto.setText(null);                  
-              }
+                int contar = tabla_venta.getRowCount();
+                double suma = 0;
+                for (int i = 0; i < contar; i++) {
+                    suma = suma + Double.parseDouble(tabla_venta.getValueAt(i, 2).toString());
+                    String sum = Double.toString(suma);
+                    total.setText(sum);
+                }
+                ingrese_cantidad.setText(null);
+                ingrese_idproducto.setText(null);
+            }
 
-          } catch (ClassNotFoundException ex) {
-              Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
-          } catch (SQLException ex) {
-              Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
-          } catch (InstantiationException ex) {
-              Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
-          } catch (IllegalAccessException ex) {
-              Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
-          }      
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_panel_agregarMouseClicked
 
     private void panel_ventaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_ventaMouseClicked
-      ingrese_cedulaempleado.setEnabled(true);
-    
-      for (int i = 0; i< tabla_venta.getRowCount(); i++){
-          model.removeRow(i);
-      }
-      ingrese_cedulacliente.setText("Ingrese la cedula del cliente");
-      ingrese_cedulaempleado.setText("Ingrese la cedula del empleado");
-      ingrese_idproducto.setText("Ingrese ID producto");
-      ingrese_cantidad.setText("Ingrese la cantidad");
-      total.setText("0.0");
-      
-      Sql s = new Sql();
-      int id = s.id_incrementable();
-      String idv = String.valueOf(id);
-      ingrese_id.setText(idv);
+        ingrese_cedulaempleado.setEnabled(true);
+
+        for (int i = 0; i < tabla_venta.getRowCount(); i++) {
+            model.removeRow(i);
+        }
+        ingrese_cedulacliente.setText("Ingrese la cedula del cliente");
+        ingrese_cedulaempleado.setText("Ingrese la cedula del empleado");
+        ingrese_idproducto.setText("Ingrese ID producto");
+        ingrese_cantidad.setText("Ingrese la cantidad");
+        total.setText("0.0");
+
+        Sql s = new Sql();
+        int id = s.id_incrementable();
+        String idv = String.valueOf(id);
+        ingrese_id.setText(idv);
     }//GEN-LAST:event_panel_ventaMouseClicked
 
     private void panel_eliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_eliminarMouseClicked
@@ -761,7 +770,7 @@ import javax.swing.ImageIcon;
         } else {
             JOptionPane.showMessageDialog(this, "¡No ha selecciona ningún producto!", "SISTEMA", JOptionPane.WARNING_MESSAGE);
         }
-        
+
         int contar = tabla_venta.getRowCount();
         double suma = 0;
         for (int i = 0; i < contar; i++) {
@@ -771,82 +780,87 @@ import javax.swing.ImageIcon;
         }
         if (contar == 0) {
             total.setText("0.0");
-        }        
+        }
     }//GEN-LAST:event_panel_eliminarMouseClicked
 
     private void ingrese_cedulaclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingrese_cedulaclienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ingrese_cedulaclienteActionPerformed
 
-    
-    
+
     private void ingrese_idproductoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ingrese_idproductoMousePressed
-         if(ingrese_id. getText().isEmpty()){
+        if (ingrese_id.getText().isEmpty()) {
             ingrese_id.setText("Ingrese el ID de la venta");
             ingrese_id.setForeground(Color.gray);
         }
 
-        if(ingrese_cedulacliente. getText().isEmpty()){
+        if (ingrese_cedulacliente.getText().isEmpty()) {
             ingrese_cedulacliente.setText("Ingrese la cedula del cliente");
             ingrese_cedulacliente.setForeground(Color.gray);
         }
 
-        if(ingrese_cedulaempleado. getText().isEmpty()){
+        if (ingrese_cedulaempleado.getText().isEmpty()) {
             ingrese_cedulaempleado.setText("Ingrese cedula empleado");
             ingrese_cedulaempleado.setForeground(Color.gray);
         }
 
-        if(ingrese_valorventa.getText().isEmpty()){
+        if (ingrese_valorventa.getText().isEmpty()) {
             ingrese_valorventa.setText("Ingrese el valor total de la venta");
             ingrese_valorventa.setForeground(Color.gray);
         }
-        
-        if(ingrese_idproducto.getText().equals("Ingrese ID producto")){
+
+        if (ingrese_idproducto.getText().equals("Ingrese ID producto")) {
             ingrese_idproducto.setText("");
             ingrese_idproducto.setForeground(Color.black);
         }
-        
-        if(ingrese_cantidad.getText().isEmpty()){
+
+        if (ingrese_cantidad.getText().isEmpty()) {
             ingrese_cantidad.setText("Ingrese la cantidad");
             ingrese_cantidad.setForeground(Color.gray);
         }
     }//GEN-LAST:event_ingrese_idproductoMousePressed
 
     private void ingrese_cantidadMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ingrese_cantidadMousePressed
-        if(ingrese_id. getText().isEmpty()){
+        if (ingrese_id.getText().isEmpty()) {
             ingrese_id.setText("Ingrese el ID de la venta");
             ingrese_id.setForeground(Color.gray);
         }
 
-        if(ingrese_cedulacliente. getText().isEmpty()){
+        if (ingrese_cedulacliente.getText().isEmpty()) {
             ingrese_cedulacliente.setText("Ingrese la cedula del cliente");
             ingrese_cedulacliente.setForeground(Color.gray);
         }
 
-        if(ingrese_cedulaempleado. getText().isEmpty()){
+        if (ingrese_cedulaempleado.getText().isEmpty()) {
             ingrese_cedulaempleado.setText("Ingrese cedula empleado");
             ingrese_cedulaempleado.setForeground(Color.gray);
         }
 
-        if(ingrese_valorventa.getText().isEmpty()){
+        if (ingrese_valorventa.getText().isEmpty()) {
             ingrese_valorventa.setText("Ingrese el valor total de la venta");
             ingrese_valorventa.setForeground(Color.gray);
         }
-        
-        if(ingrese_idproducto.getText().isEmpty()){
+
+        if (ingrese_idproducto.getText().isEmpty()) {
             ingrese_idproducto.setText("Ingrese ID producto");
             ingrese_idproducto.setForeground(Color.gray);
         }
-        
-        if(ingrese_cantidad.getText().equals("Ingrese la cantidad")){
+
+        if (ingrese_cantidad.getText().equals("Ingrese la cantidad")) {
             ingrese_cantidad.setText("");
             ingrese_cantidad.setForeground(Color.black);
         }
     }//GEN-LAST:event_ingrese_cantidadMousePressed
 
-    
-    
-    
+    private void ingrese_cedulaempleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingrese_cedulaempleadoActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_ingrese_cedulaempleadoActionPerformed
+
+    private void ingrese_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingrese_idActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ingrese_idActionPerformed
+
     // SUBIR   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
